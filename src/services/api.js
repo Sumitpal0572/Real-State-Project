@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-const API = axios.create({
-    baseURL: 'https://dummyjson.com/'
-});
+import data from '../data/realEstateData.json';
 
 export const fetchProperties = async () => {
-    const res = await API.get('/products?limit=20');
-    return res.data.products;
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(data);
+        }, 500);
+    });
 };
