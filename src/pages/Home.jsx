@@ -5,7 +5,12 @@ import PropertyFilter from "../components/PropertyFilter";
 
 const Home = () => {
   const [properties, setProperties] = useState([]);
-  const [filters, setFilters] = useState({ min: "", max: "" });
+  const [filters, setFilters] = useState({
+    min: "",
+    max: "",
+    type: "",
+    bhk: "",
+  });
 
   useEffect(() => {
     fetchProperties().then(setProperties);
@@ -14,7 +19,9 @@ const Home = () => {
   const filtered = properties.filter((p) => {
     return (
       (!filters.min || p.price >= filters.min) &&
-      (!filters.max || p.price <= filters.max)
+      (!filters.max || p.price <= filters.max) &&
+      (!filters.type || p.type === filters.type) &&
+      (!filters.bhk || p.bhk === filters.bhk)
     );
   });
 
